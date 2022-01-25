@@ -83,7 +83,7 @@ namespace CSharpTest
         }
 
         [TestMethod]
-        public void TestAfterTheWeekend()
+        public void TestBetweenWeekend()
         {
             DateTime startDate = new DateTime(2021, 4, 24);
             int count = 5;
@@ -98,6 +98,22 @@ namespace CSharpTest
             DateTime result = new WorkDayCalculator().Calculate(startDate, count, weekends);
 
             Assert.IsTrue(result.Equals(new DateTime(2021, 5, 1)));
+        }
+
+        [TestMethod]
+        public void TestAfterTheWeekend()
+        {
+            DateTime startDate = new DateTime(2021, 4, 24);
+            int count = 5;
+            WeekEnd[] weekends = new WeekEnd[2]
+            {
+                new WeekEnd(new DateTime(2021, 4, 18), new DateTime(2021, 4, 19)),
+                new WeekEnd(new DateTime(2021, 4, 20), new DateTime(2021, 4, 21))
+            };
+
+            DateTime result = new WorkDayCalculator().Calculate(startDate, count, weekends);
+
+            Assert.IsTrue(result.Equals(new DateTime(2021, 4, 28)));
         }
     }
 }

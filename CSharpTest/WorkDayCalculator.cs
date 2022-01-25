@@ -8,7 +8,7 @@ namespace CSharpTest
         {
             DateTime result;
             result = startDate;
-            if (weekEnds == null)
+            if (weekEnds == null || startDate > weekEnds[weekEnds.Length-1].EndDate.Date)
             {
                 result = startDate + TimeSpan.FromDays(dayCount-1);
                 return result;
